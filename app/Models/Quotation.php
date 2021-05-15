@@ -31,6 +31,7 @@ class Quotation extends Model
         'updated_by',
         'deleted_by',
         'active',
+        'data_policy'
     ];
 
     protected $guarded = [];

@@ -31,8 +31,8 @@ class QuotationMail extends Mailable
     public function build()
     {
         return $this->subject('Cotización #' . $this->quotation->quotation_id)
-            ->view('mails.quotation_received');
-        // ->cc('ocalero@processoft.com.co')
-        // ->cc('jmartinez@processoft.com.co');
+            ->view('mails.quotation_received')
+            ->cc('ocalero@processoft.com.co')
+            ->cc('jmartinez@processoft.com.co');
     }
 }

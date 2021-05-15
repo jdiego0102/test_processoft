@@ -46,7 +46,7 @@ class QuotationController extends Controller
             return response()->json([
                 'status' => ParamsController::WARNING,
                 'msg' => "Ya tenemos tus datos registrados."
-            ], 406);
+            ], 200);
             exit();
         }
 
@@ -60,7 +60,7 @@ class QuotationController extends Controller
 
         if ($resp) {
             // Enviar correo
-            Mail::to('j.diego010297@gmail.com')->send(new QuotationMail($quotation));
+            Mail::to('nleon@processoft.com.co')->send(new QuotationMail($quotation));
 
             return response()->json([
                 'status' => ParamsController::SUCCESS,
@@ -71,7 +71,7 @@ class QuotationController extends Controller
                 'status' => ParamsController::ERROR,
                 'title' => "¡Ups!",
                 'msg' => "Ocurrió un error al enviar datos, por favor intente de nuevo.",
-            ], 400);
+            ], 200);
         }
     }
 
