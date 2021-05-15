@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\QuotationMail;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class QuotationController extends Controller
 {
@@ -33,7 +35,7 @@ class QuotationController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      * @Descripcion:
-     * Consultar departamentos
+     * Guardar cotizacion
      * 
      */
     public function store(Request $request)
@@ -57,6 +59,9 @@ class QuotationController extends Controller
         $resp = $quotation->save();
 
         if ($resp) {
+            // Enviar correo
+            Mail::to('j.diego010297@gmail.com')->send(new QuotationMail($quotation));
+
             return response()->json([
                 'status' => ParamsController::SUCCESS,
                 'msg' => "¡Gracias por confiar en nosotros y dejarnos tus datos!"
