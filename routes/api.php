@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\QuotationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Ubicaciones
 Route::get('/departments/list',  [LocationController::class, 'getDepartments']);
 Route::get('/cities/list/{dep_id}',  [LocationController::class, 'getCities']);
+
+// Cotizacion
+Route::post('/quotation/create',  [QuotationController::class, 'store']);
