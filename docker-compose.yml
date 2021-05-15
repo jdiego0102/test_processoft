@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:12.5
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: postgres
+      POSTGRES_DB: processdb
+      POSTGRES_PASSWORD: 102030
+    volumes:
+      # Mac
+      - /Users/jdcastro-mac/Projects/Docker/db/processdb/postgres:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    image: "laravelapp"
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www/html
